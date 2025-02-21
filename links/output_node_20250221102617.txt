@@ -1,0 +1,4 @@
+"torgle","Anonymous Bitcoin Wallet","http://6oqqiwxczi3chmk3wgojojnij2ai7chd5uns7ewlv5hn7qu2zlw2zeyd.onion"
+"torgle","TorNode","http://e6wzjohnxejirqa2sgridvymv2jxhrqdfuyxvoxp3xpqh7kr4kbwpwad.onion"
+"torgle","TorNode - Onion Links Directory","http://6yzymlthp5ok2wqlpu2wz5wbfrcenxax3f65tulccbmluptrphxzaxyd.onion"
+"torgle","TorNode","http://mxw6h42hmyub2hlbonpejisfjshxuk5gg2curl7zdahpl2zvaq56kxqd.onion"
