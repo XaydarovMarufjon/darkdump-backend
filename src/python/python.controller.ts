@@ -66,11 +66,11 @@ export class PythonController {
           const lines = data.split('\n').map(line => line.trim()).filter(line => line);
           const result: { num: number; resurs: string; title: string; url: string }[] = [];
           let i = 0;
-        
+
           for (const line of lines) {
             // CSV formatida vergul bilan ajratilgan qatorni bo‘lib olish
             const parts = line.split('","').map(part => part.replace(/^"|"$/g, ''));
-        
+
             if (parts.length === 3) {
               result.push({
                 num: ++i,
@@ -80,7 +80,7 @@ export class PythonController {
               });
             }
           }
-        
+
           return result;
         };
         const parsedLinks = parseLinks(data);
