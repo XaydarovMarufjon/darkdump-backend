@@ -1,4 +1,5 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query, Res } from '@nestjs/common';
+import { Response } from 'express';
 import { exec } from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -9,6 +10,24 @@ const execPromise = promisify(exec);
 @Controller('search')
 export class PythonController {
   constructor(private readonly pythonService: PythonService) { }
+
+  @Get('download/:filename')
+  async downloadFile(@Param('filename') filename: string, @Res() res: Response) {
+    const filePath = path.join(__dirname, '../../links', filename);
+
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).send('File not found');
+    }
+
+    res.download(filePath, filename, (err) => {
+      if (err) {
+        console.error('Error downloading the file', err);
+        res.status(500).send('Failed to download the file');
+      }
+    });
+  }
+
+
 
   @Get()
   async getOnionLinks(@Query('query') query: string) {
