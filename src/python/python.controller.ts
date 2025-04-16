@@ -9,17 +9,19 @@ import { PythonService } from './python.service';
 const execPromise = promisify(exec);
 @Controller('search')
 export class PythonController {
+  public Fname = '';
+
   constructor(private readonly pythonService: PythonService) { }
 
   @Get('download/:filename')
   async downloadFile(@Param('filename') filename: string, @Res() res: Response) {
-    const filePath = path.join(__dirname, '../../links', filename);
+    const filePath = path.join(__dirname, '../../links', this.Fname);
 
     if (!fs.existsSync(filePath)) {
       return res.status(404).send('File not found');
     }
 
-    res.download(filePath, filename, (err) => {
+    res.download(filePath, this.Fname, (err) => {
       if (err) {
         console.error('Error downloading the file', err);
         res.status(500).send('Failed to download the file');
@@ -40,7 +42,7 @@ export class PythonController {
     const outputDir = path.join(__dirname, '../../outputs');
     const linksDir = path.join(__dirname, '../../links');
     const filepath = path.join(outputDir, filename);
-
+    this.Fname = filename;
     try {
       console.log('Running OnionSearch for:', filepath);
 
